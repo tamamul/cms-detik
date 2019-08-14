@@ -18,9 +18,11 @@ class Article extends CI_Controller {
 		$getData=$this->article_api->getList($data['page'],$config['per_page']);	
 		if($getData==FALSE):
 			$getData['response']=[];
-		endif;
+		else:
 		$getData=JSON_DECODE($getData,TRUE);
 		$config['total_rows'] = $getData['row'];
+		endif;
+		
 		$this->pagination->initialize($config);		
 		$data  = array ('isi'			=> 'article/list',
 						'number'		=> $data['page'],
